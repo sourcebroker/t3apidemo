@@ -1,0 +1,7 @@
+#!/bin/bash
+
+if [ ! -d /var/www/html/test/postman/node_modules ]; then
+  cd /var/www/html/test/postman/ && npm install
+fi
+
+/var/www/html/test/postman/node_modules/.bin/newman run /var/www/html/test/postman/t3apinews.postman_collection.json --insecure $@

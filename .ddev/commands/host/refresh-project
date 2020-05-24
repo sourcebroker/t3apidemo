@@ -1,0 +1,16 @@
+#!/bin/bash
+
+ddev delete --omit-snapshot
+
+rm -rf var/
+rm -rf vendor/
+rm -rf public/fileadmin
+rm -rf public/typo3
+rm -rf public/typo3temp
+rm -rf public/typo3conf/ext
+rm -rf public/typo3conf/l10n
+rm -rf public/typo3conf/PackageStates.php
+rm -rf public/index.php
+rm -rf test/postman/node_modules
+
+ddev start
