@@ -10,19 +10,20 @@
     }
   },
   "require": {
-    "helhum/typo3-console": "^5.8.5",
-    "typo3/minimal": "^9.5",
-    "typo3/cms-about": "^9.5",
-    "typo3/cms-adminpanel": "^9.5",
-    "typo3/cms-belog": "^9.5",
-    "typo3/cms-info": "^9.5",
-    "typo3/cms-reports": "^9.5",
-    "typo3/cms-rte-ckeditor": "^9.5",
-    "typo3/cms-setup": "^9.5",
-    "typo3/cms-t3editor": "^9.5",
-    "typo3/cms-recycler": "^9.5",
-    "typo3/cms-tstemplate": "^9.5",
-    "sourcebroker/t3apinews": "^0.2.0"
+    "helhum/typo3-console": "^6.3.0",
+    "typo3/minimal": "^10.4",
+    "typo3/cms-about": "^10.4",
+    "typo3/cms-adminpanel": "^10.4",
+    "typo3/cms-belog": "^10.4",
+    "typo3/cms-info": "^10.4",
+    "typo3/cms-reports": "^10.4",
+    "typo3/cms-rte-ckeditor": "^10.4",
+    "typo3/cms-setup": "^10.4",
+    "typo3/cms-t3editor": "^10.4",
+    "typo3/cms-recycler": "^10.4",
+    "typo3/cms-tstemplate": "^10.4",
+    "sourcebroker/t3api": "^1.0",
+    "sourcebroker/t3apinews": "^0.3"
   },
   "scripts": {
     "typo3-cms-scripts": [
