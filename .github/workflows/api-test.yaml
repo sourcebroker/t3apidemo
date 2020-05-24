@@ -8,7 +8,7 @@ jobs:
       - uses: jonaseberle/github-action-setup-ddev@v1
       - uses: matt-ball/newman-action@master
         with:
-          collection: test/postman/news.postman_collection.json
+          collection: test/postman/t3apinews.postman_collection.json
           insecure: true
           apiKey:
           environment:
