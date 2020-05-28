@@ -1,0 +1,3 @@
+#!/bin/bash
+
+ddev export-db > .ddev/database-init/db.sql.gz

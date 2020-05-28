@@ -16,6 +16,25 @@ languages:
     flag: us
 rootPageId: 1
 routes: {  }
+routeEnhancers:
+  NewsPlugin:
+    type: Extbase
+    limitToPages:
+      - 5
+    extension: News
+    plugin: Pi1
+    routes:
+      -
+        routePath: '/{news_title}'
+        _controller: 'News::detail'
+        _arguments:
+          news_title: news
+    defaultController: 'News::detail'
+    aspects:
+      news_title:
+        type: PersistedAliasMapper
+        tableName: tx_news_domain_model_news
+        routeFieldName: path_segment
 imports:
   -
     resource: 'EXT:t3api/Configuration/Routing/config.yaml'

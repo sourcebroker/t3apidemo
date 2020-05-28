@@ -1,0 +1,45 @@
+# All to LF by default
+* text eol=lf
+
+# Turn on automatic text file recognition
+* text=auto
+
+# Explicitly declare which files are text - just to be sure
+*.css text
+*.less text
+*.sass text
+*.html text
+*.tpl text
+*.php text
+*.js text
+*.htc text
+*.xml text
+*.xlf text
+*.sql text
+*.sh text
+*.txt text
+*.ts text
+.gitattributes text
+.htaccess text
+ChangeLog text
+
+# Denote all files that are truly binary and should not be modified.
+*.png binary
+*.jpg binary
+*.gif binary
+*.pdf binary
+*.doc binary
+*.sxw binary
+*.swf binary
+*.eot binary
+*.ttf binary
+*.woff binary
+*.woff2 binary
+*.otf binary
+*.otf2 binary
+*.ot2 binary
+*.db binary
+*.svg binary
+*.exe binary
+*.mmdb binary
+*.phar binary

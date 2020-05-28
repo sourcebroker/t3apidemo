@@ -55,3 +55,8 @@ Refresh
 #######
 
 If you feel like you made a mess while testing API you can always refresh whole project - clean database and files - with command ``ddev refresh-project``.
+
+Changelog
+#########
+
+See https://github.com/sourcebroker/t3api-demo/blob/master/CHANGELOG.rst
