@@ -64,7 +64,7 @@ Examples
      * )
 
 * Get list of news from defined pid `https://t3api-demo.ddev.site/_api/news/news?pid=6 <https://t3api-demo.ddev.site/_api/news/news?pid=6>`_
-  When defining `@T3api\ApiResource` you can set possible values for pid.
+  When defining ``@T3api\ApiResource`` you can set possible values for storagePid.
 
   ::
 
@@ -86,7 +86,7 @@ Examples
    *     properties={"uid"}
    * )
 
-* Get news from between two dates `https://t3api-demo.ddev.site/_api/news/news?datetime[between]=2020-05-28T21:45:55.000..2020-05-29T21:20:00.000 <https://t3api-demo.ddev.site/_api/news/news?datetime[between]=2020-05-28T21:45:55.000..2020-05-29T21:20:00.000>`_
+* Get news from between two dates `https://t3api-demo.ddev.site/_api/news/news?datetime[between]=2020-05-28T21:35:55.000..2020-05-29T21:20:00.000 <https://t3api-demo.ddev.site/_api/news/news?datetime[between]=2020-05-28T21:45:55.000..2020-05-29T21:20:00.000>`_
 
   ::
 
