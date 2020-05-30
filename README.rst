@@ -23,13 +23,19 @@ The API is available at:
 
 `https://t3api-demo.ddev.site/_api/ <https://t3api-demo.ddev.site/_api/>`_
 
+The TYPO3 backend can be accessed with username: ``admin`` and password: ``password`` at:
+
+`https://t3api-demo.ddev.site/typo3/ <https://t3api-demo.ddev.site/typo3/>`_
+
+You can go to backend module ``Admin Tools > Web API`` and see the Swagger admin panel that allows to do operation on API.
+
 Examples
 ########
 
 * Get list of news `https://t3api-demo.ddev.site/_api/news/news <https://t3api-demo.ddev.site/_api/news/news>`_
-* Get single news `https://t3api-demo.ddev.site/_api/news/1 <https://t3api-demo.ddev.site/_api/news/1>`_
+* Get single news `https://t3api-demo.ddev.site/_api/news/news/1 <https://t3api-demo.ddev.site/_api/news/news/1>`_
 * Get list of categories `https://t3api-demo.ddev.site/_api/news/categories <https://t3api-demo.ddev.site/_api/news/categories>`_
-* Get list of news sorted by title `https://t3api-demo.ddev.site/_api/news/news?order[title]=asc <https://t3api-demo.ddev.site/_api/news/news?order[title]=asc>`_ or by datetime `https://t3api-demo.ddev.site/_api/news/news?order[title]=asc <https://t3api-demo.ddev.site/_api/news/news?order[datetime]=asc>`_
+* Get list of news sorted by title `https://t3api-demo.ddev.site/_api/news/news?order[title]=asc <https://t3api-demo.ddev.site/_api/news/news?order[title]=asc>`_ or by datetime `https://t3api-demo.ddev.site/_api/news/news?order[title]=asc <https://t3api-demo.ddev.site/_api/news/news?order[datetime]=asc>`_ or make multiple ordering `https://t3api-demo.ddev.site/_api/news/news?order[title]=asc&order[datetime]=asc <https://t3api-demo.ddev.site/_api/news/news?order[title]=asc&order[datetime]=asc>`_
   The sorting is configured simply by annotation. You do not have to implement anything!
   ::
 
@@ -57,13 +63,39 @@ Examples
      *     }
      * )
 
+* Get list of news from defined pid `https://t3api-demo.ddev.site/_api/news/news?pid=6 <https://t3api-demo.ddev.site/_api/news/news?pid=6>`_
+  When defining `@T3api\ApiResource` you can set possible values for pid.
 
+  ::
 
-The TYPO3 backend can be accessed with username: ``admin`` and password: ``password`` at:
+   * @T3api\ApiResource(
+   *     attributes={
+   *          "persistence"={
+   *              "storagePid"="3,6",
+   *              "recursive"=1
+   *          }
+   *     }
+   * )
 
-`https://t3api-demo.ddev.site/typo3/ <https://t3api-demo.ddev.site/typo3/>`_
+* Get defined single news in one API call (with support for multilang - translated records have different uids) `https://t3api-demo.ddev.site/_api/news/news?uid[]=1&uid[]=2&uid[]=3 <https://t3api-demo.ddev.site/_api/news/news?uid[]=1&uid[]=2&uid[]=3>`_
 
-You can go to backend module ``Admin Tools > Web API`` and see the Swagger admin panel that allows to do operation on API.
+  ::
+
+   * @T3api\ApiFilter(
+   *     UidFilter::class,
+   *     properties={"uid"}
+   * )
+
+* Get news from between two dates `https://t3api-demo.ddev.site/_api/news/news?datetime[between]=2020-05-28T21:45:55.000..2020-05-29T21:20:00.000 <https://t3api-demo.ddev.site/_api/news/news?datetime[between]=2020-05-28T21:45:55.000..2020-05-29T21:20:00.000>`_
+
+  ::
+
+   * @T3api\ApiFilter(
+   *     RangeFilter::class,
+   *     properties={
+   *       "datetime": "datetime"
+   *     }
+   * )
 
 Running postman tests
 #####################
