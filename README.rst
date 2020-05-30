@@ -23,13 +23,41 @@ The API is available at:
 
 `https://t3api-demo.ddev.site/_api/ <https://t3api-demo.ddev.site/_api/>`_
 
-As simple example to get all news just run:
+Examples
+########
 
-`https://t3api-demo.ddev.site/_api/news/news <https://t3api-demo.ddev.site/_api/news/news>`_
+* Get list of news `https://t3api-demo.ddev.site/_api/news/news <https://t3api-demo.ddev.site/_api/news/news>`_
+* Get single news `https://t3api-demo.ddev.site/_api/news/1 <https://t3api-demo.ddev.site/_api/news/1>`_
+* Get list of categories `https://t3api-demo.ddev.site/_api/news/categories <https://t3api-demo.ddev.site/_api/news/categories>`_
+* Get list of news sorted by title `https://t3api-demo.ddev.site/_api/news/news?order[title]=asc <https://t3api-demo.ddev.site/_api/news/news?order[title]=asc>`_ or by datetime `https://t3api-demo.ddev.site/_api/news/news?order[title]=asc <https://t3api-demo.ddev.site/_api/news/news?order[datetime]=asc>`_
+  The sorting is configured simply by annotation. You do not have to implement anything!
+  ::
 
-and to get all categories just run:
+   * @T3api\ApiFilter(
+   *     OrderFilter::class,
+   *     properties={"uid","title","datetime"}
+   * )
 
-`https://t3api-demo.ddev.site/_api/news/categories <https://t3api-demo.ddev.site/_api/news/categories>`_
+
+* Get list of news filtered by search word https://t3api-demo.ddev.site/_api/news/news?search=minima
+  The search fields are configured simply by annotation. As you see you can even search by tags.
+
+  ::
+
+     * @T3api\ApiFilter(
+     *     SearchFilter::class,
+     *     properties={
+     *          "title": "partial",
+     *          "alternativeTitle": "partial",
+     *          "bodytext": "partial",
+     *          "tags.title": "partial",
+     *     },
+     *     arguments={
+     *          "parameterName": "search",
+     *     }
+     * )
+
+
 
 The TYPO3 backend can be accessed with username: ``admin`` and password: ``password`` at:
 
