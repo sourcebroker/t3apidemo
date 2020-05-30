@@ -43,3 +43,4 @@ ChangeLog text
 *.exe binary
 *.mmdb binary
 *.phar binary
+*.gz binary
