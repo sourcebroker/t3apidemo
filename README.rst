@@ -86,7 +86,7 @@ Examples
    *     properties={"uid"}
    * )
 
-* Get news from between two dates `https://t3api-demo.ddev.site/_api/news/news?datetime[between]=2020-05-28T21:35:55.000..2020-05-29T21:20:00.000 <https://t3api-demo.ddev.site/_api/news/news?datetime[between]=2020-05-28T21:45:55.000..2020-05-29T21:20:00.000>`_
+* Get news from between two dates `https://t3api-demo.ddev.site/_api/news/news?datetime[between]=2020-05-28T21:35:55.000..2020-05-29T21:20:00.000 <https://t3api-demo.ddev.site/_api/news/news?datetime[between]=2020-05-28T21:35:55.000..2020-05-29T21:20:00.000>`_
 
   ::
 
