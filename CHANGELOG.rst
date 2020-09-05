@@ -2,6 +2,11 @@
 Changelog
 ---------
 
+1.0.1
+~~~~~
+
+1) Update newman library to 5.2.
+
 1.0.0
 ~~~~~
 
