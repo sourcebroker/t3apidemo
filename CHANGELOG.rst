@@ -2,7 +2,7 @@
 Changelog
 ---------
 
-master
+1.2.0
 ~~~~~
 
 1) Exclude some tables from database dump for import.
