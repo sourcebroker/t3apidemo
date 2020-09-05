@@ -100,8 +100,8 @@ return [
         'transport_smtp_username' => '',
     ],
     'SYS' => [
-        'devIPmask' => '',
-        'displayErrors' => 0,
+        'devIPmask' => '*',
+        'displayErrors' => 1,
         'encryptionKey' => '7deb29cfd8123ce7c028a2b55aa02a48d58efb8a413539024a5e5417c348ce03a23d2488a9fad5cdb80386d586c44dc1',
         'exceptionalErrors' => 4096,
         'features' => [
