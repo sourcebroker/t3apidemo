@@ -10,6 +10,7 @@
     }
   },
   "require": {
+    "php": "^7.3",
     "helhum/typo3-console": "^6.3.0",
     "typo3/minimal": "^10.4",
     "typo3/cms-about": "^10.4",

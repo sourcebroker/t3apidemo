@@ -6,6 +6,7 @@ Changelog
 ~~~~~
 
 1) Update newman library to 5.2.
+2) Update composer packages.
 
 1.0.0
 ~~~~~
