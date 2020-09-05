@@ -2,6 +2,11 @@
 Changelog
 ---------
 
+master
+~~~~~
+
+1) Exclude some tables from database dump for import.
+
 1.1.0
 ~~~~~
 

@@ -1,3 +1,8 @@
 #!/bin/bash
 
-ddev export-db > .ddev/database-init/db.sql.gz
+echo 'TRUNCATE sys_history; TRUNCATE sys_log; TRUNCATE be_sessions; TRUNCATE fe_sessions; TRUNCATE fe_sessions; TRUNCATE sys_file_processedfile; TRUNCATE sys_lockedrecords; TRUNCATE tx_extensionmanager_domain_model_extension;' | ddev mysql
+echo "SELECT concat('TRUNCATE TABLE ', TABLE_NAME, ';') FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'db' AND TABLE_NAME LIKE 'cache%'" | ddev mysql | sed 1d > .ddev/database-init/tmp.sql
+cat .ddev/database-init/tmp.sql  | ddev mysql
+rm .ddev/database-init/tmp.sql
+
+ddev export-db --gzip=false -f .ddev/database-init/db.sql
