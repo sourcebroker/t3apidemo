@@ -795,7 +795,7 @@
 		{
 			"id": "8feb2d12-5e3a-446f-b8ca-e800ef303dfa",
 			"key": "baseUrl",
-			"value": "https://t3api-demo.ddev.site",
+			"value": "https://t3apidemo.ddev.site",
 			"type": "string"
 		},
 		{
