@@ -3,12 +3,20 @@
   "description": "T3api demo",
   "license": "GPL-2.0-or-later",
   "config": {
-    "preferred-install": "dist",
+    "preferred-install": {
+      "*": "dist"
+    },
     "process-timeout": 99999,
     "platform": {
       "php": "7.3"
     }
   },
+  "repositories": [
+    {
+      "type": "path",
+      "url": "./packages/*"
+    }
+  ],
   "require": {
     "php": "^7.3",
     "helhum/typo3-console": "^6.3.0",
@@ -23,8 +31,13 @@
     "typo3/cms-t3editor": "^10.4",
     "typo3/cms-recycler": "^10.4",
     "typo3/cms-tstemplate": "^10.4",
+    "typo3/cms-fluid-styled-content": "^10.4",
     "sourcebroker/t3api": "^1.0",
-    "sourcebroker/t3apinews": "^0.3"
+    "sourcebroker/t3apinews": "^0.3",
+    "jigal/t3adminer": "^9.4.0",
+    "fluidtypo3/vhs": "^6.0",
+    "ssch/typo3-encore": "^3.0",
+    "sourcebroker/local": "@dev"
   },
   "scripts": {
     "typo3-cms-scripts": [

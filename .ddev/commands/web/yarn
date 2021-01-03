@@ -1,0 +1,8 @@
+#!/bin/bash
+
+## Description: [BASE] Run yarn command in context of frontend project path
+## Usage: yarn
+## Example: "ddev yarn"
+
+source .ddev/commands/web/.front_env
+yarn $@

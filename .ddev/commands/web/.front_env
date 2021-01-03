@@ -1,0 +1,13 @@
+#!/bin/bash
+
+# Set up frontend assets path and the right version of node
+cd $PATH_FRONTEND
+
+source /usr/local/nvm/nvm.sh
+NODE_VERSION=$(node -v)
+NVMRC_NODE_VERSION=$(nvm version "$(cat .nvmrc)")
+if [ "$NVMRC_NODE_VERSION" = "N/A" ]; then
+  nvm install
+elif [ "$NVMRC_NODE_VERSION" != "$NODE_VERSION" ]; then
+  nvm use
+fi

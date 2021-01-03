@@ -58,9 +58,17 @@ return [
             'storageUidImporter' => '1',
             'tagPid' => '1',
         ],
+        't3adminer' => [
+            'IPaccess' => '',
+            'applyDevIpMask' => '0',
+            'exportDirectory' => 'fileadmin',
+        ],
+        'vhs' => [
+            'disableAssetHandling' => '0',
+        ],
     ],
     'FE' => [
-        'debug' => false,
+        'debug' => true,
         'loginSecurityLevel' => 'normal',
         'passwordHashing' => [
             'className' => 'TYPO3\\CMS\\Core\\Crypto\\PasswordHashing\\Argon2iPasswordHash',

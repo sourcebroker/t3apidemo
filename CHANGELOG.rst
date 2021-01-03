@@ -2,6 +2,11 @@
 Changelog
 ---------
 
+master
+~~~~~~
+
+1) Add frontend base for VUE app demo.
+
 1.2.0
 ~~~~~
 

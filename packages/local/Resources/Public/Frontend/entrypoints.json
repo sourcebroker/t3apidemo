@@ -1,0 +1,13 @@
+{
+  "entrypoints": {
+    "app": {
+      "js": [
+        "/typo3conf/ext/local/Resources/Public/Frontend/runtime.js",
+        "/typo3conf/ext/local/Resources/Public/Frontend/app.js"
+      ],
+      "css": [
+        "/typo3conf/ext/local/Resources/Public/Frontend/app.css"
+      ]
+    }
+  }
+}

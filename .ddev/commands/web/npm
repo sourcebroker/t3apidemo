@@ -1,0 +1,8 @@
+#!/bin/bash
+
+## Description: [BASE] Run npm command in context of frontend project path
+## Usage: npm
+## Example: "ddev npm ci"
+
+source .ddev/commands/web/.front_env
+npm $@

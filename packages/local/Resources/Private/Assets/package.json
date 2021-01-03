@@ -1,0 +1,29 @@
+{
+  "name": "@sourcebroker/front",
+  "version": "1.0.0",
+  "description": "Front",
+  "private": true,
+  "license": "UNLICENSED",
+  "devDependencies": {
+    "@babel/plugin-proposal-decorators": "^7.7.0",
+    "@symfony/webpack-encore": "^0.33.0",
+    "autoprefixer": "9",
+    "core-js": "^3.8.1",
+    "date-fns": "^2.16.1",
+    "postcss-loader": "^4.0.0",
+    "sass": "^1.30.0",
+    "sass-loader": "^10.0.0",
+    "ts-loader": "^8.0.1",
+    "typescript": "^4.1.3",
+    "vue-loader": "^15",
+    "vue-template-compiler": "^2.6.12",
+    "webpack-notifier": "^1.6.0"
+  },
+  "dependencies": {
+    "axios": "^0.21.1",
+    "bootstrap": "^4.5.3",
+    "jquery": "^3.5.1",
+    "popper.js": "^1.16.1",
+    "vue": "^2.6.12"
+  }
+}

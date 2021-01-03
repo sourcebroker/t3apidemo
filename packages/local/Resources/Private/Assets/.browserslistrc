@@ -1,0 +1,8 @@
+# Browsers that we support
+# run 'npx browserslist' to show full list of supported browsers
+
+> 2%
+Last 3 versions
+IE 11 # sorry
+not IE 9
+not IE 10

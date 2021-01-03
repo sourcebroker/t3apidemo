@@ -1,0 +1,24 @@
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en"
+      xmlns:v="http://typo3.org/ns/FluidTYPO3/Vhs/ViewHelpers"
+      xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:l="http://typo3.org/ns/V/Local/ViewHelpers"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="
+      http://typo3.org/ns/FluidTYPO3/Vhs/ViewHelpers /public/typo3conf/ext/vhs/Resources/Private/Schemas/Vhs.xsd
+      http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers /public/typo3conf/ext/local/Resources/Private/Schemas/TYPO3.CMS.Fluid.xsd
+      http://typo3.org/ns/V/Local/ViewHelpers /public/typo3conf/ext/local/Resources/Private/Schemas/V.Local.xsd"
+      data-namespace-typo3-fluid="true">
+
+<ul class="navbar-nav flex-row flex-wrap bd-navbar-nav pt-2 py-md-0">
+    <v:menu.directory pages="1">
+        <f:for each="{menu}" as="mainPage" iteration="iteration">
+            <li class="nav-item col-6 col-md-auto">
+                <a href="{mainPage.link}" class="nav-link p-2">
+                    {v:or(content: mainPage.nav_title, alternative: mainPage.title)}
+                </a>
+            </li>
+        </f:for>
+    </v:menu.directory>
+</ul>
+
+</html>
