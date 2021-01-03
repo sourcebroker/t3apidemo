@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "devDependencies": {
-    "newman": "^5.2.0"
+    "newman": "^5.2.2"
   },
   "author": "",
   "license": ""
