@@ -12,7 +12,7 @@ provider: default
 hooks:
   post-start:
     - exec: composer install --prefer-source -d /var/www/html --ansi
-    - exec-host: ddev import-db --src=./.ddev/database-init/db.sql
+    #- exec-host: ddev import-db --src=./.ddev/database-init/db.sql
     - exec-host: cp test/postman/fixtures/test1.jpg public/fileadmin/user_upload/
 timezone: Europe/Berlin
 

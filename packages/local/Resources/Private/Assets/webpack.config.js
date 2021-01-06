@@ -12,13 +12,18 @@ if (!Encore.isProduction()) {
 Encore
     .setOutputPath('/var/www/html/public/typo3conf/ext/local/Resources/Public/Frontend/')
     .setPublicPath('/typo3conf/ext/local/Resources/Public/Frontend/')
-    .addEntry('app', './src/js/main.js')
+    .addEntry('app', './src/js/main.ts')
     .enableSingleRuntimeChunk()
     .splitEntryChunks()
     .cleanupOutputBeforeBuild()
     .enableBuildNotifications()
+    .enableTypeScriptLoader()
+    .enableForkedTypeScriptTypesChecking()
     .enableSourceMaps(!Encore.isProduction())
-    .enableVueLoader(() => {}, {runtimeCompilerBuild: false})
+    .enableVueLoader(() => {}, {
+        runtimeCompilerBuild: false,
+        useJsx: true,
+    })
     .enableSassLoader()
     .enablePostCssLoader()
     .configureTerserPlugin((config) => {
@@ -35,4 +40,8 @@ Encore
     )
     .autoProvidejQuery()
 
-module.exports = Encore.getWebpackConfig();
+const config = Encore.getWebpackConfig()
+
+config.resolve.modules = [ 'node_modules', 'src/js' ]
+
+module.exports = config

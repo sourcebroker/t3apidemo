@@ -1,1 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([["app"],{Cc5s:function(n,p,c){},kpGR:function(n,p,c){"use strict";c.r(p);c("Cc5s")}},[["kpGR","runtime"]]]);

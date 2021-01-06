@@ -17,6 +17,11 @@
       "url": "./packages/*"
     }
   ],
+  "autoload": {
+    "psr-4": {
+      "V\\Local\\": "public/typo3conf/ext/local/Classes"
+    }
+  },
   "require": {
     "php": "^7.3",
     "helhum/typo3-console": "^6.3.0",

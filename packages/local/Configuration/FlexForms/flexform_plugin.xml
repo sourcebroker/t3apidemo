@@ -1,0 +1,58 @@
+<T3DataStructure>
+	<sheets>
+		<sDEF>
+			<ROOT>
+				<TCEforms>
+					<sheetTitle>Component</sheetTitle>
+				</TCEforms>
+				<type>array</type>
+				<el>
+					<switchableControllerActions>
+						<TCEforms>
+							<label>Component</label>
+							<onChange>reload</onChange>
+							<config>
+								<type>select</type>
+								<renderType>selectSingle</renderType>
+								<items>
+									<numIndex index="10">
+										<numIndex index="0">News / List</numIndex>
+										<numIndex index="1">News->list</numIndex>
+									</numIndex>
+									<numIndex index="20">
+										<numIndex index="0">News / Details</numIndex>
+										<numIndex index="1">News->details</numIndex>
+									</numIndex>
+								</items>
+							</config>
+						</TCEforms>
+					</switchableControllerActions>
+				</el>
+			</ROOT>
+		</sDEF>
+
+        <configuration>
+            <ROOT>
+                <label>Component</label>
+                <displayCond>FIELD:sDEF.switchableControllerActions:=:News->list</displayCond>
+                <TCEforms>
+                    <sheetTitle>Configuration (News / List)</sheetTitle>
+                </TCEforms>
+                <type>array</type>
+                <el>
+                    <settings.newsList.itemsPerPage>
+                        <TCEforms>
+                            <label>Items per page</label>
+                            <config>
+                                <type>input</type>
+                                <size>30</size>
+                                <eval>trim</eval>
+                            </config>
+                        </TCEforms>
+                    </settings.newsList.itemsPerPage>
+                </el>
+            </ROOT>
+        </configuration>
+
+	</sheets>
+</T3DataStructure>
