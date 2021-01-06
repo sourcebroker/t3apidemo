@@ -5,6 +5,8 @@ class PropertyDescriptor
 {
     public type : Function;
 
+    public preserveRaw : boolean = false;
+
     public isNullable : boolean = true;
 
     public isArray : boolean = false;

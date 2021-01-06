@@ -54,12 +54,9 @@
                         </div>
                     </td>
                     <td v-for="column in columns">
-                        <template v-if="column.slotName">
-                            <slot :record="record" :name="column.slotName"></slot>
-                        </template>
-                        <template v-if="!column.slotName">
+                        <slot :record="record" :name="'cell:' + column.property">
                             {{ getNestedPropertyValue(column.property, record) }}
-                        </template>
+                        </slot>
                     </td>
                 </tr>
                 </tbody>
@@ -68,13 +65,13 @@
             <slot :name="'underTable'"></slot>
 
             <div class="mt-4" v-if="records && records.length">
-                <pagination @beforePageChange="beforeLoadRecords()"
+                <Pagination @beforePageChange="beforeLoadRecords()"
                             @afterPageChange="afterLoadRecords($event)"
                             @afterChangeItemsPerPage="loadRecords()"
                             :itemsPerPageOptions="itemsPerPageOptions"
                             :service="service"
                             :filter="params"
-                ></pagination>
+                ></Pagination>
             </div>
         </div>
     </div>
@@ -85,6 +82,7 @@ import AbstractService from '../../../Api/AbstractService';
 import { Component, Emit, Prop } from 'vue-property-decorator';
 import BaseComponent from '../BaseComponent';
 import AbstractModel from '../../../Api/Model/AbstractModel';
+import Pagination from './Pagination.vue';
 
 
 export type Column = {
@@ -98,7 +96,7 @@ export type Column = {
         Pagination
     }
 })
-export default class Pagination
+export default class VTable
     extends BaseComponent
 {
 
@@ -108,7 +106,7 @@ export default class Pagination
     @Prop()
     public readonly header : string;
 
-    @Prop()
+    @Prop({ default: () => new Params() })
     public readonly params : Params;
 
     @Prop()
@@ -154,7 +152,7 @@ export default class Pagination
         return this.forceIsLoadingState || this.isLoadInProgress;
     }
 
-    protected created()
+    protected mounted()
     {
         const records = this.preselectedRecords
             .map(record => [this.getRecordTrackingProperty(record), record]);
@@ -174,6 +172,7 @@ export default class Pagination
         }
 
         this.beforeLoadRecords();
+
         this.params.resetPage();
         this.loadRecordsFunction().then(records => this.afterLoadRecords(records));
     }

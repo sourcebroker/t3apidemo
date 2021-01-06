@@ -1,23 +1,31 @@
-import PropertyDescriptor from './PropertyDescriptor'
-import { PropertyDescriptorOptions } from './PropertyDescriptor'
+import 'reflect-metadata';
+import PropertyDescriptor, { PropertyDescriptorOptions } from './PropertyDescriptor';
+
 
 export const PropertySymbol = Symbol('Property');
 
-function Property (type : Function = null, options : PropertyDescriptorOptions = {}) {
-    return function (Target, property, descriptor) {
+function Property(Type : Function = undefined, options : PropertyDescriptorOptions = {})
+{
+    return function(Target, property, descriptor) {
         const TargetProto = Target.constructor.prototype;
 
         if (!TargetProto[PropertySymbol]) {
             TargetProto[PropertySymbol] = {};
         }
 
-        TargetProto[PropertySymbol][property] = new PropertyDescriptor(type, options);
+        if (!Type && !options.preserveRaw) {
+            Type = Reflect.getMetadata('design:type', Target, property);
+        }
+
+        TargetProto[PropertySymbol][property] = new PropertyDescriptor(Type, options);
 
         // make available for vue
-        descriptor.configurable = true
+        if (descriptor instanceof Object) {
+            descriptor.configurable = true;
+        }
 
-        return descriptor
-    }
+        return descriptor;
+    };
 }
 
 export default Property;

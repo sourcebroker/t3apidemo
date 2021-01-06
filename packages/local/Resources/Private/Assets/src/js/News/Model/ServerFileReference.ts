@@ -1,6 +1,7 @@
 import AbstractModel from 'Base/Api/Model/AbstractModel';
 import ApiModel from 'Base/Api/Model/ApiModel';
 import InitializerList from 'Base/InitializerList/InitializerList';
+import Property from 'Base/InitializerList/Property';
 import ServerFile from './ServerFile';
 
 
@@ -9,9 +10,11 @@ import ServerFile from './ServerFile';
 class ServerFileReference extends AbstractModel<ServerFileReference>
 {
 
-    public file : ServerFile;
+    @Property()
+    public file : ServerFile = null;
 
-    public url : string;
+    @Property()
+    public url : string = '';
 
     public static createFromServerFile(file) : ServerFileReference
     {

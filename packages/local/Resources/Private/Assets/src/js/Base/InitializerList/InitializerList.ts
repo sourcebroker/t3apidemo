@@ -1,4 +1,3 @@
-import 'reflect-metadata';
 import PropertyDescriptor from './PropertyDescriptor';
 import { PropertySymbol } from './Property';
 
@@ -19,11 +18,13 @@ class Initializer {
             return;
         }
 
-        const Target = this.constructor;
-        const properties : Properties = Target[PropertySymbol];
+        const Target = Object.getPrototypeOf(this);
+        const properties : Properties = Target[PropertySymbol] || {};
 
         Object.keys(data)
             .forEach(fieldName => {
+                const rawValue = data[fieldName];
+
                 const property = mapping[fieldName]
                     ? mapping[fieldName]
                     : fieldName;
@@ -37,12 +38,11 @@ class Initializer {
                     propertyDsrp = properties[property];
                 }
                 else {
-                    const Type = Reflect.getMetadata('design:type', Target, property);
-                    propertyDsrp = new PropertyDescriptor(Type);
+                    propertyDsrp = new PropertyDescriptor();
                 }
 
                 // null value case
-                if (data[fieldName] === null) {
+                if (rawValue === null) {
                     if (!propertyDsrp.isNullable) {
                         // property not nullable
                         throw `Property ${property} can not be set to null`;
@@ -53,13 +53,13 @@ class Initializer {
                 // primitive values stay "simple"
                 else if (propertyDsrp.isPrimitive) {
                     if (propertyDsrp.type === Boolean) {
-                        this[property] = !!data[fieldName];
+                        this[property] = !!rawValue;
                     }
                     else if (propertyDsrp.type === Number) {
-                        this[property] = +data[fieldName];
+                        this[property] = +rawValue;
                     }
                     else {
-                        this[property] = data[fieldName];
+                        this[property] = rawValue;
                     }
                 }
                 else {
@@ -67,23 +67,22 @@ class Initializer {
                     if (propertyDsrp.isArray) {
                         this[property] = [];
 
-                        if (data[fieldName] instanceof Array) {
-                            data[fieldName].forEach((elm) => {
+                        if (rawValue instanceof Array) {
+                            rawValue.forEach((elm) => {
                                 let subElm = new (propertyDsrp.type)(elm);
                                 this[property].push(subElm);
                             });
                         }
-                        else if (typeof data[fieldName] == 'object') {
-                            Object.keys(data[fieldName]).forEach((idx) => {
-                                let subElm = new (propertyDsrp.type)(data[fieldName][idx]);
+                        else if (typeof rawValue == 'object') {
+                            Object.keys(rawValue).forEach((idx) => {
+                                let subElm = new (propertyDsrp.type)(rawValue[idx]);
                                 this[property].push(subElm);
                             });
-
                         }
                     }
                     // mapping objects
                     else {
-                        this[property] = new (propertyDsrp.type)(data[fieldName]);
+                        this[property] = new (propertyDsrp.type)(rawValue);
                     }
                 }
             });

@@ -1,0 +1,187 @@
+$white: #fff !default;
+$black: #000 !default;
+$primary: $white !default;
+$secondary: #ccc !default;
+$tertiary: $black !default;
+
+$color1: $white;
+$color2: $black;
+$color3: $secondary;
+$color4: red;
+$color5: green;
+$text-color: $black;
+
+$form-error: red;
+
+// stylelint-disable value-keyword-case
+$font-family-sans-serif: Arial, sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", !default;
+$font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace !default;
+$font-family-base: $font-family-sans-serif !default;
+// stylelint-enable value-keyword-case
+
+$font-size-base: 16px !default;
+$font-size-lg: 18px !default;
+$font-size-sm: 14px !default;
+
+$font-weight-light: 300 !default;
+$font-weight-normal: 400 !default;
+$font-weight-bold: 700 !default;
+
+$font-weight-base: $font-weight-normal !default;
+$line-height-base: 1.45 !default;
+
+$h1-font-size: 42px !default;
+$h2-font-size: 32px !default;
+$h3-font-size: 24px !default;
+$h4-font-size: 20px !default;
+$h5-font-size: $h4-font-size !default;
+$h6-font-size: $font-size-base !default;
+
+// Navs
+
+$nav-link-padding-y: .5rem !default;
+$nav-link-padding-x: 1rem !default;
+$nav-link-disabled-color: $secondary !default;
+$nav-divider-color: $secondary !default;
+$nav-divider-margin-y: 5px;
+
+// Navbar
+
+$navbar-padding-y: 5px;
+$navbar-padding-x: 5px;
+
+$navbar-nav-link-padding-x: .5rem !default;
+
+$navbar-brand-font-size: $font-size-lg !default;
+// Compute the navbar-brand padding-y so the navbar-brand will have the same height as navbar-text and nav-link
+$nav-link-height: 40px !default;
+$navbar-brand-height: 40px !default;
+$navbar-brand-padding-y: 10px !default;
+
+$navbar-toggler-padding-y: .25rem !default;
+$navbar-toggler-padding-x: .75rem !default;
+$navbar-toggler-font-size: 14px !default;
+$navbar-toggler-border-radius: 0 !default;
+
+$navbar-dark-color: rgba($white, .5) !default;
+$navbar-dark-hover-color: rgba($white, .75) !default;
+$navbar-dark-active-color: $white !default;
+$navbar-dark-disabled-color: rgba($white, .25) !default;
+$navbar-dark-toggler-icon-bg: str-replace(url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='#{$navbar-dark-color}' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E"), "#", "%23") !default;
+$navbar-dark-toggler-border-color: rgba($white, .1) !default;
+
+$navbar-light-color: rgba($black, .5) !default;
+$navbar-light-hover-color: rgba($black, .7) !default;
+$navbar-light-active-color: rgba($black, .9) !default;
+$navbar-light-disabled-color: rgba($black, .3) !default;
+$navbar-light-toggler-icon-bg: str-replace(url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='#{$navbar-light-color}' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E"), "#", "%23") !default;
+$navbar-light-toggler-border-color: rgba($black, .1) !default;
+
+// Grid breakpoints
+//
+// Define the minimum dimensions at which your layout will change,
+// adapting to different screen sizes, for use in media queries.
+
+$grid-breakpoints: (
+        xs: 0,
+        sm: 576px,
+        md: 768px,
+        lg: 992px,
+        xl: 1200px
+) !default;
+
+@include _assert-ascending($grid-breakpoints, "$grid-breakpoints");
+@include _assert-starts-at-zero($grid-breakpoints);
+
+// Grid containers
+//
+// Define the maximum width of `.container` for different screen sizes.
+
+$container-max-widths: (
+        sm: 540px,
+        md: 720px,
+        lg: 960px,
+        xl: 1140px
+) !default;
+
+@include _assert-ascending($container-max-widths, "$container-max-widths");
+
+// Grid columns
+//
+// Set the number of columns and specify the width of the gutters.
+
+$grid-columns: 12 !default;
+$grid-gutter-width: 30px !default;
+
+// Paragraphs
+//
+// Style p element.
+
+$paragraph-margin-bottom: 1rem !default;
+
+$headings-margin-bottom: 10px !default;
+$headings-font-family: inherit !default;
+$headings-font-weight: 500 !default;
+$headings-line-height: 1.45 !default;
+$headings-color: inherit !default;
+
+$link-color: $secondary;
+$link-hover-color: darken($secondary, 10%);
+$link-decoration: underline;
+$link-hover-decoration: underline;
+
+$enable-grid-classes: true;
+$output-bourbon-deprecation-warnings: false;
+
+$input-height: 50px;
+$input-color: $black;
+$input-border-color: $text-color;
+$input-border-width: 1px;
+$input-placeholder-color: $black;
+$input-bg: $white;
+
+$em-base: 10px;
+
+// Font Awesome
+$font-awesome: "Font Awesome 5 Free";
+$fa-li-width: 1.6em;
+
+// Animations
+$base-duration: 300ms;
+$base-timing: ease-in-out;
+$base-transition: all $base-duration $base-timing;
+
+// Layout
+$section-margin: 40px;
+$margin-default: 30px;
+
+// Grid
+$max-width: 1140px;
+$grid-float-breakpoint: 'lg';
+$grid-float-breakpoint-max: 'md';
+
+// Header
+$header-height-after-breakpoint: 135px;
+$header-height-after-breakpoint-responsive: 108px;
+$border-radius: 0;
+
+// Breakpoints
+$mobile: 'sm';
+$tablet: 'sm', 'lg';
+$tablet-min: 'sm';
+$tablet-max: 'lg';
+$tablet-large: 'md', 'xl';
+$tablet-large-min: 'md';
+$tablet-large-max: 'xl';
+$tablet-all: 'sm', 'xl';
+$desktop-min: 'xl';
+
+// Spacing (for paddings and margins)
+
+$spacing: (
+        '1': 20px,
+        '2': 40px,
+        '3': 60px,
+        '4': 80px,
+        '5': 100px
+);

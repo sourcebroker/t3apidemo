@@ -1,6 +1,7 @@
 import AbstractModel from 'Base/Api/Model/AbstractModel';
 import ApiModel from 'Base/Api/Model/ApiModel';
 import InitializerList from 'Base/InitializerList/InitializerList';
+import Property from 'Base/InitializerList/Property';
 
 
 @InitializerList()
@@ -8,6 +9,7 @@ import InitializerList from 'Base/InitializerList/InitializerList';
 class Tag extends AbstractModel<Tag>
 {
 
+    @Property()
     public title : string = '';
 
 }

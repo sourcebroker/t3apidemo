@@ -10,8 +10,6 @@ function ApiModel(apiResourceName)
             {
                 super(...args);
 
-                this['@type'] = (<any> this).prototype.prototype.constructor.name;
-
                 let raw = args[0] || {};
                 if (typeof raw == 'string') {
                     this['@id'] = raw;

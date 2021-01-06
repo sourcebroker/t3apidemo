@@ -73,6 +73,7 @@ export default class Pagination
     public changeItemsPerPage(itemsPerPage : Number, event : Event)
     {
         event && event.preventDefault();
+
         this.filter.resetPage();
         this.filter.itemsPerPage = itemsPerPage;
     }

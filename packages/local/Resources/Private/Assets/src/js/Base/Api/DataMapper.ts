@@ -13,7 +13,7 @@ type Models = {
 export default class DataMapper
 {
 
-    static models : Models = {};
+    protected static models : Models = {};
 
     static register(model, apiResourceName)
     {
@@ -46,4 +46,5 @@ export default class DataMapper
 
         return new Model(object);
     }
+
 }

@@ -1,0 +1,124 @@
+
+.m-table {
+  &__search {
+    width: 100%;
+  }
+
+  &__search-icon {
+    position: absolute;
+    right: 10px;
+    z-index: 860;
+    pointer-events: none;
+    padding-top: 0.575rem;
+    padding-bottom: 0.575rem;
+    line-height: 1.5rem;
+  }
+
+  &__inner {
+    position: relative;
+    min-height: 300px;
+  }
+
+  &__loader {
+    position: absolute;
+    width: 100%;
+    top: 50%;
+    left: 0;
+    text-align: center;
+    transform: translateY(-50%);
+    font-size: 60px;
+    z-index: 10;
+  }
+
+  &__overlay {
+    z-index: 5;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background: transparentize(#F3F3F3, 0.2);
+  }
+
+  &__table {
+    width: 100%;
+
+    th, td {
+      &:first-child {
+        padding-left: 20px;
+      }
+
+      &:last-child {
+        padding-right: 20px;
+      }
+    }
+
+    th {
+      background-color: $secondary;
+      color: $white;
+      font-weight: $font-weight-bold;
+
+      &:before {
+        content: '';
+        display: inline-block;
+        width: 1px;
+        border-left: 1px solid $white;
+        height: 20px;
+        margin-left: -10px;
+        margin-top: 3px;
+        position: absolute;
+      }
+
+      &:first-child {
+        border-bottom-left-radius: 8px;
+        border-top-left-radius: 8px;
+
+        &:before {
+          display: none;
+        }
+      }
+
+      &:last-child {
+        border-bottom-right-radius: 8px;
+        border-top-right-radius: 8px;
+      }
+
+      padding-top: 8px;
+      padding-bottom: 8px;
+    }
+
+    td {
+      color: $secondary;
+      border-bottom: 1px solid $secondary;
+      padding-top: 8px;
+      padding-bottom: 8px;
+    }
+
+    &__col {
+      &--selection {
+        width: 50px;
+      }
+
+      &--index-0 {
+        &:before {
+          display: none !important;
+        }
+      }
+    }
+
+    &--selectable {
+      tr {
+        cursor: pointer;
+
+        &:hover {
+          background-color: rgba(255, 255, 255, 0.5);
+        }
+      }
+    }
+  }
+
+  &__btn-order {
+    padding: 0;
+    display: inline;
+    border: none;
+    background: none;
+  }
+}
