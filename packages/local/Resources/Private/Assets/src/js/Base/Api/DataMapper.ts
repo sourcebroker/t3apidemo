@@ -2,9 +2,10 @@ import HydraResponse from './HydraResponse';
 import AbstractModel from './Model/AbstractModel';
 
 
-type ConstructorType = {
-    new(...args : any[]) : any
-};
+interface ConstructorType extends Function
+{
+    new(...args : any[]) : any;
+}
 
 type Models = {
     [modelType : string] : ConstructorType

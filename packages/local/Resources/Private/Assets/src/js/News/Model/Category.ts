@@ -4,8 +4,8 @@ import InitializerList from 'Base/InitializerList/InitializerList';
 import Property from 'Base/InitializerList/Property';
 
 
+@ApiModel('SourceBroker\\T3apinews\\Category')
 @InitializerList()
-@ApiModel('Category')
 class Category extends AbstractModel<Category>
 {
 

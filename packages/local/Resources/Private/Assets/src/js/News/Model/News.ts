@@ -6,6 +6,8 @@ import Tag from './Tag'
 import Category from './Category'
 import ServerFileReference from './ServerFileReference'
 
+@ApiModel('SourceBroker\\T3apinews\\News')
+@InitializerList()
 class News extends AbstractModel<News>
 {
 
@@ -30,10 +32,10 @@ class News extends AbstractModel<News>
     @Property()
     public authorEmail : string = '';
 
-    @Property(Category, { isArray: true })
+    @Property({ arrayOf: Category })
     public categories : Category[] = [];
 
-    @Property(News, { isArray: true })
+    @Property({ arrayOf: News })
     public related : News[] = [];
 
     @Property()
@@ -48,7 +50,7 @@ class News extends AbstractModel<News>
     @Property()
     public istopnews : boolean = false;
 
-    @Property(Tag, { isArray: true })
+    @Property({ arrayOf: Tag })
     public tags : Tag[] = [];
 
     @Property()
@@ -60,7 +62,7 @@ class News extends AbstractModel<News>
     @Property()
     public singleUri : string = '';
 
-    @Property(ServerFileReference, { isArray: true })
+    @Property({ arrayOf: ServerFileReference })
     public falMedia : ServerFileReference[] = [];
 
 }

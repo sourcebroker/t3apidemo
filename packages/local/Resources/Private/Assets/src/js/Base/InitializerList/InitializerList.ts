@@ -2,7 +2,10 @@ import PropertyDescriptor from './PropertyDescriptor';
 import { PropertySymbol } from './Property';
 
 
-type ConstructorType = { new(...args : any[]) : any };
+interface ConstructorType extends Function
+{
+    new(...args : any[]) : any;
+}
 
 type Properties = { [index : string] : PropertyDescriptor };
 
@@ -29,16 +32,9 @@ class Initializer {
                     ? mapping[fieldName]
                     : fieldName;
 
-                if (!this.hasOwnProperty(property)) {
+                const propertyDsrp = properties[property];
+                if (!propertyDsrp) {
                     return;
-                }
-
-                let propertyDsrp;
-                if (properties[property]) {
-                    propertyDsrp = properties[property];
-                }
-                else {
-                    propertyDsrp = new PropertyDescriptor();
                 }
 
                 // null value case
@@ -69,13 +65,13 @@ class Initializer {
 
                         if (rawValue instanceof Array) {
                             rawValue.forEach((elm) => {
-                                let subElm = new (propertyDsrp.type)(elm);
+                                let subElm = new (propertyDsrp.arrayOf)(elm);
                                 this[property].push(subElm);
                             });
                         }
                         else if (typeof rawValue == 'object') {
                             Object.keys(rawValue).forEach((idx) => {
-                                let subElm = new (propertyDsrp.type)(rawValue[idx]);
+                                let subElm = new (propertyDsrp.arrayOf)(rawValue[idx]);
                                 this[property].push(subElm);
                             });
                         }
@@ -92,9 +88,8 @@ class Initializer {
 
 function InitializerList(mapping : Mapping = {})
 {
-    return <T extends ConstructorType>(Target : T) => {
-        return class extends Target
-        {
+    return (Target : ConstructorType) => {
+        const ExtClass = class extends Target {
             constructor(...args : any[])
             {
                 super(...args);
@@ -105,6 +100,8 @@ function InitializerList(mapping : Mapping = {})
                 }
             }
         };
+        Object.defineProperty (ExtClass, 'name', { value: Target.name });
+        return ExtClass;
     };
 }
 

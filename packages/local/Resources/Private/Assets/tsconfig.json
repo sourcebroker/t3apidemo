@@ -35,7 +35,7 @@
         "src/js/**/*.vue",
     ],
     "files": [
-        "src/js/shims-vue.d.ts"
+        "src/shims-vue.d.ts"
     ],
     "exclude": [
         "node_modules",

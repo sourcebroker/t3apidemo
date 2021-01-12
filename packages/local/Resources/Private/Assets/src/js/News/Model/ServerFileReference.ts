@@ -5,8 +5,8 @@ import Property from 'Base/InitializerList/Property';
 import ServerFile from './ServerFile';
 
 
+@ApiModel()
 @InitializerList()
-@ApiModel('ServerFile')
 class ServerFileReference extends AbstractModel<ServerFileReference>
 {
 

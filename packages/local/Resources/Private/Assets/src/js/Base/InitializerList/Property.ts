@@ -4,7 +4,7 @@ import PropertyDescriptor, { PropertyDescriptorOptions } from './PropertyDescrip
 
 export const PropertySymbol = Symbol('Property');
 
-function Property(Type : Function = undefined, options : PropertyDescriptorOptions = {})
+function Property(options : PropertyDescriptorOptions = {})
 {
     return function(Target, property, descriptor) {
         const TargetProto = Target.constructor.prototype;
@@ -13,11 +13,11 @@ function Property(Type : Function = undefined, options : PropertyDescriptorOptio
             TargetProto[PropertySymbol] = {};
         }
 
-        if (!Type && !options.preserveRaw) {
-            Type = Reflect.getMetadata('design:type', Target, property);
+        if (!options.type && !options.preserveRaw) {
+            options.type = Reflect.getMetadata('design:type', Target, property);
         }
 
-        TargetProto[PropertySymbol][property] = new PropertyDescriptor(Type, options);
+        TargetProto[PropertySymbol][property] = new PropertyDescriptor(options);
 
         // make available for vue
         if (descriptor instanceof Object) {

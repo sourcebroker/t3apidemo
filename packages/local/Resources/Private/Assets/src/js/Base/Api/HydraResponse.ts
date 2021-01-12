@@ -71,7 +71,7 @@ class HydraView
 class HydraResponse
 {
 
-    @Property(null, { isArray: true, preserveRaw: true })
+    @Property({ arrayOf: AbstractModel, preserveRaw: true })
     public member : AbstractModel<any>[] = [];
 
     @Property()

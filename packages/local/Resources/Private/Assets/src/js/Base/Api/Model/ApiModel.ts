@@ -1,11 +1,16 @@
 import DataMapper from '../DataMapper';
 
 
-function ApiModel(apiResourceName)
+interface ConstructorType extends Function
 {
-    return function(target) {
-        let extendedClass = class ApiModel extends target
-        {
+    new(...args : any[]) : any;
+}
+
+
+function ApiModel(apiResourceName = null)
+{
+    return (Target : ConstructorType) => {
+        const ExtClass = class ApiModel extends Target {
             constructor(...args)
             {
                 super(...args);
@@ -17,20 +22,20 @@ function ApiModel(apiResourceName)
             }
         };
 
-        if (!apiResourceName) {
-            apiResourceName = target.name;
+        Object.defineProperty (ExtClass, 'name', { value: Target.name });
+
+        if (apiResourceName) {
+            if (apiResourceName instanceof Array) {
+                apiResourceName.forEach((name) => {
+                    DataMapper.register(ExtClass, name);
+                });
+            }
+            else {
+                DataMapper.register(ExtClass, apiResourceName);
+            }
         }
 
-        if (apiResourceName instanceof Array) {
-            apiResourceName.forEach((name) => {
-                DataMapper.register(extendedClass, name);
-            });
-        }
-        else {
-            DataMapper.register(extendedClass, apiResourceName);
-        }
-
-        return extendedClass;
+        return ExtClass;
     };
 }
 

@@ -6,7 +6,6 @@ defined('TYPO3_MODE') or die();
     '<INCLUDE_TYPOSCRIPT: source="DIR:EXT:local/Configuration/TsConfig/Page/" extensions="tsconfig">'
 );
 
-
 \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
     'V.Local',
     'Plugin',
@@ -15,3 +14,5 @@ defined('TYPO3_MODE') or die();
     ],
     []
 );
+
+$GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['t3api']['serializerSubscribers'][] = V\Local\T3api\Serializer\Subscriber\GenerateMetadataSubscriber::class;

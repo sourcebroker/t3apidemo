@@ -8,7 +8,7 @@ function loadModules(require)
 {
     const modules = [];
     require.keys().forEach((entry) => {
-        if (!!entry) {
+        if (!!entry && entry.indexOf('/Component/') !== -1) {
             modules.push(require(entry));
         }
     });
@@ -23,8 +23,9 @@ loadModules((<any> require).context('..', true, /\.vue/))
         }
 
         // try to mount only mountable components
-        if (Component.MOUNT_ON) {
-            const domElements = document.querySelectorAll(Component.MOUNT_ON);
+        const mountOn = Component.MOUNT_ON || Component.super.MOUNT_ON;
+        if (mountOn) {
+            const domElements = document.querySelectorAll(mountOn);
             for (const domElement of domElements) {
                 const data = Object.assign({}, domElement.dataset)
 
@@ -37,8 +38,7 @@ loadModules((<any> require).context('..', true, /\.vue/))
                     render: (h) => h(Component),
                     router,
                     data: () => data,
-                })
-                    .$mount(domElement);
+                }).$mount(domElement);
             }
         }
     });

@@ -3,8 +3,8 @@ import ApiModel from 'Base/Api/Model/ApiModel';
 import InitializerList from 'Base/InitializerList/InitializerList';
 
 
+@ApiModel()
 @InitializerList()
-@ApiModel('ServerFile')
 class ServerFile extends AbstractModel<ServerFile>
 {
 }

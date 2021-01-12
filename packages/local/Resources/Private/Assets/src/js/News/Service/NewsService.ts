@@ -1,10 +1,12 @@
 import AbstractRestService from 'Base/Api/AbstractRestService';
+import { Singleton } from 'Base/ObjectManager';
 import News from '../Model/News';
 import NewsFilter from '../Model/Filter/NewsFilter';
 
 declare var REST_API_BASE_URL: string;
 
 
+@Singleton()
 class NewsService extends AbstractRestService
 {
 
@@ -12,7 +14,6 @@ class NewsService extends AbstractRestService
 
     public getCollectionByFilter(filter : NewsFilter = null) : Promise<News[]>
     {
-
         return <Promise<News[]>> super.fetchCollection('news', { params: filter });
     }
 
