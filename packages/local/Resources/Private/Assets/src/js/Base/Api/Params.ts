@@ -1,4 +1,5 @@
 import InitializerList from '../InitializerList/InitializerList';
+import Property from '../InitializerList/Property';
 
 
 export enum OrderDirection
@@ -16,7 +17,7 @@ type ParamsJSON = {
 class OrderCollection
 {
 
-    protected properties : Map<string, string> = new Map();
+    protected _properties : Map<string, string> = new Map();
 
     public add(
         property : string,
@@ -26,22 +27,22 @@ class OrderCollection
         direction = direction.toLowerCase() === OrderDirection.DESC
             ? OrderDirection.DESC
             : OrderDirection.ASC;
-        this.properties.set(property, direction);
+        this._properties.set(property, direction);
     }
 
     public remove(property)
     {
-        this.properties.delete(property);
+        this._properties.delete(property);
     }
 
     public toggle(property)
     {
-        if (this.properties.has(property)) {
-            if (this.properties.get(property) === OrderDirection.DESC) {
+        if (this._properties.has(property)) {
+            if (this._properties.get(property) === OrderDirection.DESC) {
                 this.remove(property);
             }
             else {
-                this.properties.set(property, OrderDirection.DESC);
+                this._properties.set(property, OrderDirection.DESC);
             }
         }
         else {
@@ -51,7 +52,7 @@ class OrderCollection
 
     public isSortingBy(property : string, direction : OrderDirection = undefined)
     {
-        if (!this.properties.has(property)) {
+        if (!this._properties.has(property)) {
             return false;
         }
 
@@ -59,19 +60,19 @@ class OrderCollection
             return true;
         }
 
-        return this.properties.get(property).toLowerCase() === direction.toLowerCase();
+        return this._properties.get(property).toLowerCase() === direction.toLowerCase();
     }
 
     public get isEmpty()
     {
-        return !this.properties.size;
+        return !this._properties.size;
     }
 
     public toJSON()
     {
         const object : ParamsJSON = {};
 
-        Array.from(this.properties.entries())
+        Array.from(this._properties.entries())
             .forEach(([property, direction]) => {
                 object[property] = direction;
             });
@@ -85,10 +86,13 @@ class OrderCollection
 class Params
 {
 
-    public itemsPerPage : number;
+    @Property()
+    public itemsPerPage : number = 10;
 
+    @Property()
     public pageIndex : number = 0;
 
+    @Property()
     public order : OrderCollection = new OrderCollection();
 
     public resetPage() : Params

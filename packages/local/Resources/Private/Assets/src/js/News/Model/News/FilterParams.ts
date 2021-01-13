@@ -4,7 +4,7 @@ import Property from 'Base/InitializerList/Property';
 
 
 @InitializerList()
-class NewsFilter extends Params
+class FilterParams extends Params
 {
 
     @Property()
@@ -13,15 +13,14 @@ class NewsFilter extends Params
     @Property()
     public search : string = '';
 
-    toJSON () {
-        return Object.assign(
-            {},
-            super.toJSON(),
-            {
-                search: this.search || undefined
-            }
-        )
+    toJSON()
+    {
+        return {
+            ...super.toJSON(),
+            search: this.search
+        };
     }
 }
 
-export default Params
+
+export default FilterParams;

@@ -6,7 +6,7 @@
             </div>
             <div class="col-md-6">
                 <div class="input-group input-group-md" v-if="searchEnabled">
-                    <input type="text" class="form-control m-table__search" v-model="params.search" @input="loadRecords(400)" :placeholder="searchPlaceholder"/>
+                    <input type="text" class="form-control m-table__search" v-model="_params.search" @input="loadRecords(400)" :placeholder="searchPlaceholder"/>
                     <i class="fas fa-search m-table__search-icon"></i>
                 </div>
             </div>
@@ -36,8 +36,8 @@
                     <th v-for="(column, index) in columns" :class="'m-table__table__col--index-' + index">
                         <button class="m-table__btn-order" @click="toggleOrder(column.property)" v-if="column.sortable">
                             {{ column.label }}
-                            <i class="fas fa-caret-up" v-if="params.order.isSortingBy(column.property, 'asc')"></i>
-                            <i class="fas fa-caret-down" v-if="params.order.isSortingBy(column.property, 'desc')"></i>
+                            <i class="fas fa-caret-up" v-if="_params.order.isSortingBy(column.property, 'asc')"></i>
+                            <i class="fas fa-caret-down" v-if="_params.order.isSortingBy(column.property, 'desc')"></i>
                         </button>
                         <template v-if="!column.sortable">
                             {{ column.label }}
@@ -70,16 +70,16 @@
                             @afterChangeItemsPerPage="loadRecords()"
                             :itemsPerPageOptions="itemsPerPageOptions"
                             :service="service"
-                            :filter="params"
+                            :filter="_params"
                 ></Pagination>
             </div>
         </div>
     </div>
 </template>
 <script lang="ts">
-import Params from '../../../Api/Params';
+import Params from 'Base/Api/Params';
 import AbstractService from '../../../Api/AbstractService';
-import { Component, Emit, Prop } from 'vue-property-decorator';
+import { Component, Emit, Prop, PropSync } from 'vue-property-decorator';
 import BaseComponent from '../BaseComponent';
 import AbstractModel from '../../../Api/Model/AbstractModel';
 import Pagination from './Pagination.vue';
@@ -106,8 +106,8 @@ export default class VTable
     @Prop()
     public readonly header : string;
 
-    @Prop({ default: () => new Params() })
-    public readonly params : Params;
+    @PropSync('params')
+    public readonly _params : object;
 
     @Prop()
     public readonly columns : Column[];
@@ -173,7 +173,7 @@ export default class VTable
 
         this.beforeLoadRecords();
 
-        this.params.resetPage();
+        this._params.resetPage();
         this.loadRecordsFunction().then(records => this.afterLoadRecords(records));
     }
 
@@ -190,7 +190,7 @@ export default class VTable
 
     public toggleOrder(property: string)
     {
-        this.params.order.toggle(property);
+        this._params.order.toggle(property);
         this.loadRecords();
     }
 

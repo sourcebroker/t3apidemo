@@ -1,13 +1,22 @@
 <template>
     <VTable
         :service="service"
-        :params="params"
+        :params="filterParams"
         :columns="columns"
         :load-records-function="loadNews"
         header="News"
         search-placeholder="Search news"
         message-no-results="Could not find news matching your criteria."
     >
+        <template v-slot:cell:image="{ record: news }">
+            <img :src="news.imageThumbnail"
+                 :title="news.title"
+                 class="img-responsive"
+            />
+        </template>
+        <template v-slot:cell:title="{ record: news }">
+            <a :href="news.singleUri">{{ news.title }}</a>
+        </template>
         <template v-slot:cell:datetime="{ record: news }">
             {{ news.datetime | formatDate }}
         </template>
@@ -22,14 +31,14 @@ import { Inject, DependencyInjection } from 'Base/ObjectManager';
 import BaseComponent from 'Base/Vue/Component/BaseComponent';
 import VTable, { Column } from 'Base/Vue/Component/Table/VTable';
 import NewsService from '../Service/NewsService';
-import NewsFilter from '../Model/Filter/NewsFilter';
+import FilterParams from '../Model/News/FilterParams';
 
+@DependencyInjection()
 @Component({
     components: {
         VTable
     }
 })
-@DependencyInjection()
 export default class List
     extends BaseComponent
 {
@@ -37,11 +46,16 @@ export default class List
     public static MOUNT_ON = '.js-news-list';
 
     @Inject()
-    public service : NewsService;
+    public service : NewsService = new NewsService();
 
-    public params : NewsFilter = new NewsFilter();
+    public filterParams : FilterParams = new FilterParams();
 
     public columns : Column[] = [
+        {
+            label: 'Teaser',
+            sortable: false,
+            property: 'image',
+        },
         {
             label: 'Title',
             sortable: true,
@@ -61,7 +75,8 @@ export default class List
 
     public loadNews()
     {
-        return this.service.getCollectionByFilter(this.params);
+        console.log(this.filterParams)
+        return this.service.getCollectionByFilter(this.filterParams);
     }
 
 }
