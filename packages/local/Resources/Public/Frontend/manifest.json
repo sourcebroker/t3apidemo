@@ -1,5 +1,6 @@
 {
-  "typo3conf/ext/local/Resources/Public/Frontend/app.js": "https://t3apidemo.ddev.site:8080/typo3conf/ext/local/Resources/Public/Frontend/app.js",
-  "typo3conf/ext/local/Resources/Public/Frontend/runtime.js": "https://t3apidemo.ddev.site:8080/typo3conf/ext/local/Resources/Public/Frontend/runtime.js",
-  "typo3conf/ext/local/Resources/Public/Frontend/vendors~app.js": "https://t3apidemo.ddev.site:8080/typo3conf/ext/local/Resources/Public/Frontend/vendors~app.js"
+  "typo3conf/ext/local/Resources/Public/Frontend/0.js": "/typo3conf/ext/local/Resources/Public/Frontend/0.js",
+  "typo3conf/ext/local/Resources/Public/Frontend/app.css": "/typo3conf/ext/local/Resources/Public/Frontend/app.css",
+  "typo3conf/ext/local/Resources/Public/Frontend/app.js": "/typo3conf/ext/local/Resources/Public/Frontend/app.js",
+  "typo3conf/ext/local/Resources/Public/Frontend/runtime.js": "/typo3conf/ext/local/Resources/Public/Frontend/runtime.js"
 }

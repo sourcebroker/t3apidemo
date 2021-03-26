@@ -1,7 +1,7 @@
 import AbstractRestService from 'Base/Api/AbstractRestService';
 import { Singleton } from 'Base/ObjectManager';
 import News from '../Model/News';
-import NewsFilter from '../Model/Filter/NewsFilter';
+import NewsFilter from '../Model/News/FilterParams';
 
 declare var REST_API_BASE_URL: string;
 
