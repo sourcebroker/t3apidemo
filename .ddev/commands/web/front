@@ -7,12 +7,12 @@
 source .ddev/commands/web/.front_env
 
 if [[ $1 = "build" ]]; then
-    yarn install --check-files
+    yarn install --frozen-lockfile
     ${FRONTEND_BUILD}
 fi
 
 if [[ $1 = "watch" ]]; then
-    yarn install --check-files
+    yarn install --frozen-lockfile
     ${FRONTEND_WATCH}
 fi
 
