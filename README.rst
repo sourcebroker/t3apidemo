@@ -35,7 +35,7 @@ Examples
 * Get list of news `https://t3apidemo.ddev.site/_api/news/news <https://t3apidemo.ddev.site/_api/news/news>`_
 * Get single news `https://t3apidemo.ddev.site/_api/news/news/1 <https://t3apidemo.ddev.site/_api/news/news/1>`_
 * Get list of categories `https://t3apidemo.ddev.site/_api/news/categories <https://t3apidemo.ddev.site/_api/news/categories>`_
-* Get list of news sorted by title `https://t3apidemo.ddev.site/_api/news/news?order[title]=asc <https://t3apidemo.ddev.site/_api/news/news?order[title]=asc>`_ or by datetime `https://t3apidemo.ddev.site/_api/news/news?order[title]=asc <https://t3apidemo.ddev.site/_api/news/news?order[datetime]=asc>`_ or make multiple ordering `https://t3apidemo.ddev.site/_api/news/news?order[title]=asc&order[datetime]=asc <https://t3apidemo.ddev.site/_api/news/news?order[title]=asc&order[datetime]=asc>`_
+* Get list of news sorted by title `https://t3apidemo.ddev.site/_api/news/news?order[title]=asc <https://t3apidemo.ddev.site/_api/news/news?order[title]=asc>`_ or by datetime `https://t3apidemo.ddev.site/_api/news/news?order[datetime]=asc <https://t3apidemo.ddev.site/_api/news/news?order[datetime]=asc>`_ or make multiple ordering `https://t3apidemo.ddev.site/_api/news/news?order[title]=asc&order[datetime]=asc <https://t3apidemo.ddev.site/_api/news/news?order[title]=asc&order[datetime]=asc>`_
   The sorting is configured simply by annotation. You do not have to implement anything!
   ::
 
