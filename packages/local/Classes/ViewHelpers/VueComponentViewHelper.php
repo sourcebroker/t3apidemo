@@ -34,13 +34,13 @@ class VueComponentViewHelper extends AbstractViewHelper
         /** @var Request $request */
         $request = $this->renderingContext->getControllerContext()->getRequest();
         $extensionKey = $this->arguments['extensionName'] ?? $request->getControllerExtensionKey();
-        $languageKey = $GLOBALS['TSFE']->sys_language_isocode;
+        $languageKey = $GLOBALS['TSFE']->getLanguage()->getTwoLetterIsoCode();
 
         // input data
         $dataScriptTagId = null;
 
         if (!empty($this->arguments['data'])) {
-            $dataScriptTagId = md5(uniqid());
+            $dataScriptTagId = md5(uniqid('', true));
 
             $data = $this->createInputData($this->arguments['data']);
             $dataJson = json_encode($data, JSON_HEX_AMP | JSON_HEX_QUOT | JSON_HEX_APOS | JSON_HEX_TAG);

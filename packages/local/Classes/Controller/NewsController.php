@@ -2,23 +2,24 @@
 
 namespace V\Local\Controller;
 
+use Psr\Http\Message\ResponseInterface;
 use GeorgRinger\News\Domain\Model\News;
 use GeorgRinger\News\Domain\Repository\NewsRepository;
-use TYPO3\CMS\Extbase\Annotation\Inject;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 
-class NewsController
-    extends ActionController
+class NewsController extends ActionController
 {
-
     /**
      * @var NewsRepository
-     * @Inject()
      */
-    protected $newsRepository;
+    protected NewsRepository $newsRepository;
 
+    public function __construct(NewsRepository $newsRepository)
+    {
+        $this->newsRepository = $newsRepository;
+    }
 
-    public function listAction()
+    public function listAction(): ResponseInterface
     {
         $itemsPerPage = (int)$this->settings['newsList']['itemsPerPage'];
         $this->view->assign('componentData', [
@@ -27,13 +28,15 @@ class NewsController
                 'totalItems' => $this->newsRepository->countAll(),
             ],
         ]);
+        return $this->htmlResponse();
     }
 
-    public function detailsAction(News $news)
+    public function detailsAction(News $news): ResponseInterface
     {
         $this->view->assignMultiple([
             'news' => $news,
         ]);
+        return $this->htmlResponse();
     }
 
 }

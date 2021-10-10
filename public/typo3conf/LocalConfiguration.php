@@ -5,7 +5,6 @@ return [
         'explicitADmode' => 'explicitAllow',
         'installToolPassword' => '$argon2i$v=19$m=65536,t=16,p=1$bVNWVlpobDRLVlhYOEd3UQ$Ak8nGMmn5J2/pLqclNhB8W6LIWt8lpd/aPb4kl8h8zc',
         'lockSSL' => true,
-        'loginSecurityLevel' => 'normal',
         'passwordHashing' => [
             'className' => 'TYPO3\\CMS\\Core\\Crypto\\PasswordHashing\\Argon2iPasswordHash',
             'options' => [],
@@ -20,11 +19,7 @@ return [
         ],
     ],
     'EXT' => [],
-    'EXTCONF' => [
-        'helhum-typo3-console' => [
-            'initialUpgradeDone' => '10.4',
-        ],
-    ],
+    'EXTCONF' => [],
     'EXTENSIONS' => [
         'backend' => [
             'backendFavicon' => '',
@@ -33,6 +28,7 @@ return [
             'loginFootnote' => '',
             'loginHighlightColor' => '',
             'loginLogo' => '',
+            'loginLogoAlt' => '',
         ],
         'extensionmanager' => [
             'automaticInstallation' => '1',
@@ -58,18 +54,12 @@ return [
             'storageUidImporter' => '1',
             'tagPid' => '1',
         ],
-        't3adminer' => [
-            'IPaccess' => '',
-            'applyDevIpMask' => '0',
-            'exportDirectory' => 'fileadmin',
-        ],
         'vhs' => [
             'disableAssetHandling' => '0',
         ],
     ],
     'FE' => [
         'debug' => true,
-        'loginSecurityLevel' => 'normal',
         'passwordHashing' => [
             'className' => 'TYPO3\\CMS\\Core\\Crypto\\PasswordHashing\\Argon2iPasswordHash',
             'options' => [],

@@ -1,7 +1,7 @@
 <?php
 
 \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
-    'V.Local',
+    'Local',
     'Plugin',
     'Local ext main plugin'
 );

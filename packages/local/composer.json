@@ -1,22 +1,19 @@
 {
   "name": "sourcebroker/local",
-  "license": [
-    "GPL-2.0-or-later"
-  ],
-  "type": "typo3-cms-extension",
   "description": "Central extension for all mods connected with this specific TYPO3 instance.",
-  "require": {
-    "php": "^7.3",
-    "typo3/cms-core": "^10.4"
+  "license": "GPL-2.0-or-later",
+  "type": "typo3-cms-extension",
+  "require": [],
+  "suggest": [],
+  "conflict": [],
+  "extra": {
+    "typo3/cms": {
+      "extension-key": "local"
+    }
   },
   "autoload": {
-    "psr-4": {
-      "SourceBroker\\Local\\": "Classes"
-    }
-  },
-  "autoload-dev": {
-    "psr-4": {
-      "SourceBroker\\Local\\Tests\\": "Tests"
-    }
+    "classmap": [
+      "*"
+    ]
   }
 }

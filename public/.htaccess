@@ -1,4 +1,4 @@
-#####
+######
 #
 # Example .htaccess file for TYPO3 CMS - for use with Apache Webserver
 #
@@ -118,6 +118,7 @@
 	ExpiresByType application/schema+json               "access plus 0 seconds"
 	ExpiresByType application/vnd.geo+json              "access plus 0 seconds"
 	ExpiresByType application/xml                       "access plus 0 seconds"
+	ExpiresByType text/json                             "access plus 0 seconds"
 	ExpiresByType text/xml                              "access plus 0 seconds"
 
 	ExpiresByType image/vnd.microsoft.icon              "access plus 1 week"
@@ -135,29 +136,29 @@
 	ExpiresByType application/x-web-app-manifest+json   "access plus 0 seconds"
 	ExpiresByType text/cache-manifest                   "access plus 0 seconds"
 
-	ExpiresByType audio/ogg                             "access plus 1 month"
-	ExpiresByType image/bmp                             "access plus 1 month"
-	ExpiresByType image/gif                             "access plus 1 month"
-	ExpiresByType image/jpeg                            "access plus 1 month"
-	ExpiresByType image/png                             "access plus 1 month"
-	ExpiresByType image/svg+xml                         "access plus 1 month"
-	ExpiresByType image/webp                            "access plus 1 month"
-	ExpiresByType video/mp4                             "access plus 1 month"
-	ExpiresByType video/ogg                             "access plus 1 month"
-	ExpiresByType video/webm                            "access plus 1 month"
+	ExpiresByType audio/ogg                             "access plus 1 year"
+	ExpiresByType image/bmp                             "access plus 1 year"
+	ExpiresByType image/gif                             "access plus 1 year"
+	ExpiresByType image/jpeg                            "access plus 1 year"
+	ExpiresByType image/png                             "access plus 1 year"
+	ExpiresByType image/svg+xml                         "access plus 1 year"
+	ExpiresByType image/webp                            "access plus 1 year"
+	ExpiresByType video/mp4                             "access plus 1 year"
+	ExpiresByType video/ogg                             "access plus 1 year"
+	ExpiresByType video/webm                            "access plus 1 year"
 
 	ExpiresByType application/atom+xml                  "access plus 1 hour"
 	ExpiresByType application/rdf+xml                   "access plus 1 hour"
 	ExpiresByType application/rss+xml                   "access plus 1 hour"
 
-	ExpiresByType application/vnd.ms-fontobject         "access plus 1 month"
-	ExpiresByType font/eot                              "access plus 1 month"
-	ExpiresByType font/opentype                         "access plus 1 month"
-	ExpiresByType application/x-font-ttf                "access plus 1 month"
-	ExpiresByType application/font-woff                 "access plus 1 month"
-	ExpiresByType application/x-font-woff               "access plus 1 month"
-	ExpiresByType font/woff                             "access plus 1 month"
-	ExpiresByType application/font-woff2                "access plus 1 month"
+	ExpiresByType application/vnd.ms-fontobject         "access plus 1 year"
+	ExpiresByType font/eot                              "access plus 1 year"
+	ExpiresByType font/opentype                         "access plus 1 year"
+	ExpiresByType application/x-font-ttf                "access plus 1 year"
+	ExpiresByType application/font-woff                 "access plus 1 year"
+	ExpiresByType application/x-font-woff               "access plus 1 year"
+	ExpiresByType font/woff                             "access plus 1 year"
+	ExpiresByType application/font-woff2                "access plus 1 year"
 
 	ExpiresByType text/x-cross-domain-policy            "access plus 1 week"
 
@@ -170,16 +171,6 @@
 
 # Proper MIME types for all files
 <IfModule mod_mime.c>
-	# Security configuration
-	RemoveType .html .htm
-	<FilesMatch ".+\.html?$">
-		AddType text/html .html .htm
-	</FilesMatch>
-
-	RemoveType .svg .svgz
-	<FilesMatch ".+\.svgz?$">
-		AddType image/svg+xml .svg .svgz
-	</FilesMatch>
 
 	# Data interchange
 	AddType application/atom+xml                        atom
@@ -202,6 +193,7 @@
 	AddType audio/mp4                                   f4a f4b m4a
 	AddType audio/ogg                                   oga ogg opus
 	AddType image/bmp                                   bmp
+	AddType image/svg+xml                               svg svgz
 	AddType image/webp                                  webp
 	AddType video/mp4                                   f4v f4p m4v mp4
 	AddType video/ogg                                   ogv
@@ -210,11 +202,11 @@
 	AddType image/x-icon                                cur ico
 
 	# Web fonts
-	AddType font/woff                                   woff
-	AddType font/woff2                                  woff2
+	AddType application/font-woff                       woff
+	AddType application/font-woff2                      woff2
 	AddType application/vnd.ms-fontobject               eot
-	AddType font/ttf                                    ttc ttf
-	AddType font/otf                                    otf
+	AddType application/x-font-ttf                      ttc ttf
+	AddType font/opentype                               otf
 
 	# Other
 	AddType application/octet-stream                    safariextz
@@ -268,21 +260,29 @@ AddDefaultCharset utf-8
 
 <IfModule mod_rewrite.c>
 
-	# Enable URL rewriting
-	RewriteEngine On
+    # Enable URL rewriting
+    RewriteEngine On
 
-	# Store the current location in an environment variable CWD to use
-	# mod_rewrite in .htaccess files without knowing the RewriteBase
-	RewriteCond $0#%{REQUEST_URI} ([^#]*)#(.*)\1$
-	RewriteRule ^.*$ - [E=CWD:%2]
+    # Store the current location in an environment variable CWD to use
+    # mod_rewrite in .htaccess files without knowing the RewriteBase
+    RewriteCond $0#%{REQUEST_URI} ([^#]*)#(.*)\1$
+    RewriteRule ^.*$ - [E=CWD:%2]
 
-	# Rules to set ApplicationContext based on hostname
-	#RewriteCond %{HTTP_HOST} ^dev\.example\.com$
-	#RewriteRule .? - [E=TYPO3_CONTEXT:Development]
-	#RewriteCond %{HTTP_HOST} ^staging\.example\.com$
-	#RewriteRule .? - [E=TYPO3_CONTEXT:Production/Staging]
-	#RewriteCond %{HTTP_HOST} ^www\.example\.com$
-	#RewriteRule .? - [E=TYPO3_CONTEXT:Production]
+    ##############################################################
+    # LOCC START
+    # Force HTTPS but not for local domain to avoid problems on clickdummy with browsersync proxy
+    RewriteCond %{HTTP:X-Forwarded-Proto} !https
+    RewriteCond %{HTTPS} off
+    RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301,NE]
+
+    # Prevent NOT existing files and folders with dot to be processed by TYPO3
+    RewriteCond %{REQUEST_FILENAME}  !-f
+    RewriteCond %{REQUEST_FILENAME}  !-d
+    RewriteCond %{REQUEST_URI} \.
+    RewriteCond %{REQUEST_URI} !(.*)sitemap\.xml$
+    RewriteRule ^ - [L,R=404]
+    # LOCC END
+    ##############################################################
 
 	# Rule for versioned static files, configured through:
 	# - $GLOBALS['TYPO3_CONF_VARS']['BE']['versionNumberInFilename']
@@ -305,34 +305,39 @@ AddDefaultCharset utf-8
 	RewriteCond %{SCRIPT_FILENAME} -f
 	RewriteRule (?:^|/)\. - [F]
 
-	# Stop rewrite processing, if we are in the typo3/ directory or any other known directory
-	# NOTE: Add your additional local storages here
-	RewriteRule ^(?:typo3/|fileadmin/|typo3conf/|typo3temp/|uploads/) - [L]
+    # Stop rewrite processing, if we are in known directory
+    # NOTE: Add your additional local storages here
+    # https://docs.typo3.org/c/typo3/cms-core/master/en-us/Changelog/11.0/Breaking-93048-BackendURLRewrites.html
+    RewriteRule ^(?:fileadmin/|typo3conf/|typo3temp/|uploads/) - [L]
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME} !-l
+    RewriteCond %{REQUEST_URI} ^/typo3/.*$
+    RewriteRule ^typo3/(.*)$ %{ENV:CWD}typo3/index.php [QSA,L]
 
-	# If the file/symlink/directory does not exist => Redirect to index.php.
-	# For httpd.conf, you need to prefix each '%{REQUEST_FILENAME}' with '%{DOCUMENT_ROOT}'.
-	RewriteCond %{REQUEST_FILENAME} !-f
-	RewriteCond %{REQUEST_FILENAME} !-d
-	RewriteCond %{REQUEST_FILENAME} !-l
-	RewriteRule ^.*$ %{ENV:CWD}index.php [QSA,L]
+    # If the file/symlink/directory does not exist => Redirect to index.php.
+    # For httpd.conf, you need to prefix each '%{REQUEST_FILENAME}' with '%{DOCUMENT_ROOT}'.
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME} !-l
+    RewriteRule ^.*$ %{ENV:CWD}index.php [QSA,L]
 
 </IfModule>
 
 # Access block for files
-# Apache < 2.3
-<IfModule !mod_authz_core.c>
-	<FilesMatch "(?i:^\.|^#.*#|^(?:ChangeLog|ToDo|Readme|License)(?:\.md|\.txt)?|^composer\.(?:json|lock)|^ext_conf_template\.txt|^ext_typoscript_constants\.txt|^ext_typoscript_setup\.txt|flexform[^.]*\.xml|locallang[^.]*\.(?:xml|xlf)|\.(?:bak|co?nf|cfg|ya?ml|ts|typoscript|tsconfig|dist|fla|in[ci]|log|sh|sql(?:\..*)?|sqlite(?:\..*)?|sw[op]|git.*|rc)|.*~)$">
+<FilesMatch "(?i:^\.|^#.*#|^(?:ChangeLog|ToDo|Readme|License)(?:\.md|\.txt)?|^composer\.(?:json|lock)|^ext_conf_template\.txt|^ext_typoscript_constants\.txt|^ext_typoscript_setup\.txt|flexform[^.]*\.xml|locallang[^.]*\.(?:xml|xlf)|\.(?:bak|co?nf|cfg|ya?ml|ts|dist|fla|in[ci]|log|sh|sql(?:\..*)?|sw[op]|git.*)|.*(?:~|rc))$">
+	# Apache < 2.3
+	<IfModule !mod_authz_core.c>
 		Order allow,deny
 		Deny from all
 		Satisfy All
-	</FilesMatch>
-</IfModule>
-# Apache ≥ 2.3
-<IfModule mod_authz_core.c>
-	<If "%{REQUEST_URI} =~ m#(?i:/\.|/\x23.*\x23|/(?:ChangeLog|ToDo|Readme|License)(?:\.md|\.txt)?|/composer\.(?:json|lock)|/ext_conf_template\.txt|/ext_typoscript_constants\.txt|/ext_typoscript_setup\.txt|flexform[^.]*\.xml|locallang[^.]*\.(?:xml|xlf)|\.(?:bak|co?nf|cfg|ya?ml|ts|typoscript|tsconfig|dist|fla|in[ci]|log|sh|sql(?:\..*)?|sqlite(?:\..*)?|sw[op]|git.*|rc)|.*~)$#">
+	</IfModule>
+
+	# Apache ≥ 2.3
+	<IfModule mod_authz_core.c>
 		Require all denied
-	</If>
-</IfModule>
+	</IfModule>
+</FilesMatch>
 
 # Block access to vcs directories
 <IfModule mod_alias.c>
@@ -344,6 +349,16 @@ AddDefaultCharset utf-8
 
 
 ### Begin: Miscellaneous ###
+
+# Secure html and svg with wrong extensions
+RemoveType .html .htm
+RemoveType .svg .svgz
+<FilesMatch ".+\.html?$">
+    AddType text/html     .html .htm
+</FilesMatch>
+<FilesMatch ".+\.svgz?$">
+    AddType image/svg+xml .svg .svgz
+</FilesMatch>
 
 # 404 error prevention for non-existing redirected folders
 Options -MultiViews
@@ -371,6 +386,3 @@ Options -MultiViews
 FileETag None
 
 ### End: Miscellaneous ###
-
-
-# Add your own rules here.

@@ -8,7 +8,7 @@
     },
     "process-timeout": 99999,
     "platform": {
-      "php": "7.3"
+      "php": "7.4.1"
     }
   },
   "repositories": [
@@ -23,35 +23,39 @@
     }
   },
   "require": {
-    "php": "^7.3",
-    "helhum/typo3-console": "^6.3.0",
-    "typo3/minimal": "^10.4",
-    "typo3/cms-about": "^10.4",
-    "typo3/cms-adminpanel": "^10.4",
-    "typo3/cms-belog": "^10.4",
-    "typo3/cms-info": "^10.4",
-    "typo3/cms-reports": "^10.4",
-    "typo3/cms-rte-ckeditor": "^10.4",
-    "typo3/cms-setup": "^10.4",
-    "typo3/cms-t3editor": "^10.4",
-    "typo3/cms-recycler": "^10.4",
-    "typo3/cms-tstemplate": "^10.4",
-    "typo3/cms-fluid-styled-content": "^10.4",
-    "sourcebroker/t3api": "^1.0",
-    "sourcebroker/t3apinews": "^0.3",
-    "jigal/t3adminer": "^9.4.0",
-    "fluidtypo3/vhs": "^6.0",
+    "php": "^7.4.1",
+    "ext-json": "*",
+    "helhum/typo3-console": "^7.0.0",
+    "typo3/minimal": "^11.5",
+    "typo3/cms-about": "^11.5",
+    "typo3/cms-adminpanel": "^11.5",
+    "typo3/cms-belog": "^11.5",
+    "typo3/cms-info": "^11.5",
+    "typo3/cms-reports": "^11.5",
+    "typo3/cms-rte-ckeditor": "^11.5",
+    "typo3/cms-setup": "^11.5",
+    "typo3/cms-t3editor": "^11.5",
+    "typo3/cms-recycler": "^11.5",
+    "typo3/cms-tstemplate": "^11.5",
+    "typo3/cms-fluid-styled-content": "^11.5",
     "ssch/typo3-encore": "^3.0",
-    "sourcebroker/local": "@dev"
+    "fluidtypo3/vhs": "@dev",
+    "sourcebroker/local": "@dev",
+    "sourcebroker/t3api": "dev-typo3-115-support",
+    "sourcebroker/t3apinews": "dev-typo3-115-support",
+    "georgringer/news": "dev-master as 8.6.0"
+
   },
   "scripts": {
     "typo3-cms-scripts": [
-      "typo3cms install:fixfolderstructure",
-      "typo3cms install:generatepackagestates",
-      "typo3cms install:extensionsetupifpossible"
+      "typo3cms install:fixfolderstructure"
     ],
     "post-autoload-dump": [
       "@typo3-cms-scripts"
     ]
+  },
+  "require-dev": {
+    "rector/rector": "^0.11.57",
+    "nimut/testing-framework": "^5.2"
   }
 }
