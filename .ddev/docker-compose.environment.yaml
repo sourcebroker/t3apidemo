@@ -3,7 +3,7 @@ version: '3.6'
 services:
   web:
     environment:
-      -  PATH_FRONTEND=packages/local/Resources/Private/Assets
+      -  PATH_FRONTEND=assets
       -  FRONTEND_BUILD=yarn encore production
       -  FRONTEND_WATCH=yarn encore dev-server --hot --public https://t3apidemo.ddev.site:8080 --host 0.0.0.0 --disable-host-check
       -  TYPO3_CONTEXT=Development

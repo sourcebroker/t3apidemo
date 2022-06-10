@@ -1,0 +1,6 @@
+plugin.tx_typo3encore {
+    settings {
+        entrypointJsonPath = assets/frontend/build/entrypoints.json
+        manifestJsonPath = assets/frontend/build/manifest.json
+    }
+}

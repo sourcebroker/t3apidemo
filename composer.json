@@ -9,12 +9,16 @@
     "process-timeout": 99999,
     "platform": {
       "php": "7.4.1"
+    },
+    "allow-plugins": {
+      "typo3/class-alias-loader": true,
+      "typo3/cms-composer-installers": true
     }
   },
   "repositories": [
     {
       "type": "path",
-      "url": "./packages/*"
+      "url": "./src/*"
     }
   ],
   "autoload": {
@@ -38,12 +42,12 @@
     "typo3/cms-recycler": "^11.5",
     "typo3/cms-tstemplate": "^11.5",
     "typo3/cms-fluid-styled-content": "^11.5",
-    "ssch/typo3-encore": "^3.0",
-    "fluidtypo3/vhs": "@dev",
+    "ssch/typo3-encore": "^4.0",
+    "fluidtypo3/vhs": "^6.1",
     "sourcebroker/local": "@dev",
-    "sourcebroker/t3api": "dev-typo3-115-support",
-    "sourcebroker/t3apinews": "dev-typo3-115-support",
-    "georgringer/news": "dev-master as 8.6.0"
+    "sourcebroker/t3api": "^2",
+    "sourcebroker/t3apinews": "^1",
+    "georgringer/news": "^9.3"
 
   },
   "scripts": {

@@ -59,6 +59,8 @@ return [
         ],
     ],
     'FE' => [
+        'addAllowedPaths' => 'assets/',
+        'additionalAbsRefPrefixDirectories' => 'assets/',
         'debug' => true,
         'passwordHashing' => [
             'className' => 'TYPO3\\CMS\\Core\\Crypto\\PasswordHashing\\Argon2iPasswordHash',
